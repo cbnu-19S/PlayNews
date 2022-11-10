@@ -66,7 +66,7 @@
             <h2 class="title">회원가입</h2>
           </div>
           <div class="card-body">
-            <method="POST" id="signup-form">
+            <form method="POST" id="signup-form">
               <div class="form-row">
                 <div class="name">이름</div>
                 <div class="value">
@@ -81,7 +81,13 @@
                   </div>
                 </div>
               </div>
-
+              {% for message in messages %}
+              <div class="text-center">
+                <div class="btn btn-success rounded-pill px-5 my-3">
+                  {{ message }}
+                </div>
+              </div>
+              {% endfor %}
               <div class="form-row m-b-55">
                 <div class="name">아이디</div>
                 <div class="value">
@@ -99,7 +105,7 @@
                     </div>
                     <div class="col-2">
                       <div class="input-group-desc">
-                        <button class="btn btn--radius-2 btn--green" type="button">
+                        <button class="btn btn--radius-2 btn--green" type="button" value = "checkid">
                           중복 확인
                         </button>
                       </div>
@@ -107,6 +113,7 @@
                   </div>
                 </div>
               </div>
+
               
               <br>
 
@@ -129,7 +136,7 @@
                         <input
                           class="input--style-5"
                           type="password"
-                          id="userpw"
+                          id="userpw2"
                           name=name="userpw"
                         />
                         <label class="label--desc">비밀번호 재입력</label>
@@ -427,7 +434,7 @@
               <br>
 
               <div>
-                <button class="btn btn--radius-2 btn--red" type="submit">
+                <button class="btn btn--radius-2 btn--red" type="submit" value="signup" >
                   등록
                 </button>
               </div>
