@@ -7,3 +7,5 @@ class UserInfo(models.Model):
     userid=models.CharField(max_length=20)
     userpw=models.CharField(max_length=20)
     useremail = models.CharField(max_length=30)
+    userAddress = models.CharField(max_length=50,blank=True, null=True)
+    userPhone = models.CharField(max_length=20)
