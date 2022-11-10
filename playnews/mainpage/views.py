@@ -9,6 +9,7 @@ from django.contrib.auth import authenticate
 def mainpage(request):
     # 해당 url이 오면 templates/mainpage/main.html을 보여주겠다.
     return render(request,'mainpage/mainpage.html')
+
 def loginpage(request):
     return render(request,'mainpage/loginpage.html')
 
