@@ -60,6 +60,7 @@
   <body>
     <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
       <div class="wrapper wrapper--w790">
+        <a href="{% url 'go_mainpage' %}">main page</a>
         <div class="card card-5">
           <div class="card-heading">
             <h2 class="title">회원가입</h2>
@@ -70,7 +71,7 @@
                 <div class="name">이름</div>
                 <div class="value">
                   <div class="input-group-desc">
-                    <input
+                    <input id="username" name="username"
                       class="input--style-5"
                       type="text"
                       name="name"
@@ -88,6 +89,7 @@
                     <div class="col-2">
                       <div class="input-group-desc">
                         <input
+                                id="userid" name="userid"
                           class="input--style-5"
                           type="text"
                           name="password"
@@ -116,8 +118,8 @@
                       <div class="input-group-desc">
                         <input
                           class="input--style-5"
-                          type="text"
-                          name="password"
+                          input id="userpw" name="userpw"
+                          type="password"
                         />
                         <label class="label--desc">비밀번호는 영문, 숫자, 특수문자 세 종류의 혼합으로 이루어져야 합니다.</label>
                       </div>
@@ -126,8 +128,9 @@
                       <div class="input-group-desc">
                         <input
                           class="input--style-5"
-                          type="text"
-                          name="re_password"
+                          type="password"
+                          id="userpw"
+                          name=name="userpw"
                         />
                         <label class="label--desc">비밀번호 재입력</label>
                       </div>

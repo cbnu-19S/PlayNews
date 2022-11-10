@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PlayNews-login</title>
+</head>
+<body>
+<a href="{% url 'go_mainpage' %}">main page</a>
+<br>
+<form method = "POST" action="/login/">
+    {% csrf_token %}
+    <p>
+        <input id="userid" name="userid" placeholder="아이디 " required />
+    </p>
+    <p>
+        <input id="userpw" name="userpw" placeholder="비밀번호" type="password" required />
+    </p>
+    <p>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">로그인</button>
+    </p>
+</form>
+</body>
+</html>
