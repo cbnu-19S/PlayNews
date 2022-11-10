@@ -60,10 +60,10 @@ def signup(request):
         UserInfo.objects.create(
             userid=request.POST.get('userid'),
             userpw=request.POST.get('userpw'),
-            # username=request.POST.get('username'),
-            # useremail=request.POST.get('useremail'),
-            # userAddress=request.POST.get('useraddress'),
-            # userPhone=request.POST.get('userphone'),
+            username=request.POST.get('username'),
+            useremail=request.POST.get('useremail'),
+            # userAddress=request.POST.get('userAddress'),
+            userPhone=request.POST.get('userPhone'),
         )
     return render(request, 'mainpage/loginpage.html')
 
