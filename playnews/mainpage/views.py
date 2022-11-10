@@ -33,26 +33,38 @@ def login(request):
               return render(request, 'mainpage/loggedinpage.html')
     return render(request,'mainpage/loginpage.html')
 
-def signup(request):
+'''def signup(request):
     if 'checkid' in request.POST:
         id = request.POST.get('userid')
         infos = UserInfo.objects.all()
+        is_exist = False
         for info in infos:
             if info.userid == id:
-                messages.warning(request, "id가 중복되었습니다.")
-
+                messages.add_message(request, messages.ERROR, 'id가 중복되었습니다.')
+                is_exist = True
             else:
-                messages.warning(request, "사용 가능한 id 입니다.")
-
+                messages.add_message(request, messages.SUCCESS, '사용 가능한 id 입니다.')
+        return render(request,'mainpage/signuppage.html')
     elif 'signup' in request.POST:
-        id = request.POST.get('userid')
-        pw = request.POST.get('userpw')
-        infos = UserInfo.objects.all()
-        for info in infos:
-            if info.userid == id and info.userpw == pw:
-                return render(request, 'mainpage/loggedinpage.html')
-    return render(request,'mainpage/loginpage.html')
-
+        UserInfo.objects.create(
+            userid=request.POST.get('userid'),
+            userpw=request.POST.get('userpw'),
+            username=request.POST.get('username'),
+            useremail=request.POST.get('useremail'),
+            # userAddress=request.POST.get('useraddress'),
+            userPhone=request.POST.get('userphone'),
+         )
+        return render(request,'mainpage/loginpage.html')'''
+def signup(request):
+    UserInfo.objects.create(
+        userid=request.POST.get('userid'),
+        userpw=request.POST.get('userpw'),
+        username=request.POST.get('username'),
+        useremail=request.POST.get('useremail'),
+        # userAddress=request.POST.get('useraddress'),
+        userPhone=request.POST.get('userphone'),
+    )
+    return render(request, 'mainpage/loginpage.html')
 
 # userid 와 userpw 가 db에 저장된것과 같은지 비교한후 일치하면 result.html로 간다.
 

@@ -66,7 +66,8 @@
             <h2 class="title">회원가입</h2>
           </div>
           <div class="card-body">
-            <form method="POST" id="signup-form">
+            <form method="POST" action = "/signup/">
+              {% csrf_token %}
               <div class="form-row">
                 <div class="name">이름</div>
                 <div class="value">
@@ -81,13 +82,7 @@
                   </div>
                 </div>
               </div>
-              {% for message in messages %}
-              <div class="text-center">
-                <div class="btn btn-success rounded-pill px-5 my-3">
-                  {{ message }}
-                </div>
-              </div>
-              {% endfor %}
+
               <div class="form-row m-b-55">
                 <div class="name">아이디</div>
                 <div class="value">
@@ -105,10 +100,17 @@
                     </div>
                     <div class="col-2">
                       <div class="input-group-desc">
-                        <button class="btn btn--radius-2 btn--green" type="button" value = "checkid">
+                        <button class="btn btn--radius-2 btn--green" type="submit" value = "checkid">
                           중복 확인
                         </button>
                       </div>
+                      {% for messages in messages %}
+                       <div class="text-center">
+                       <div class="btn btn-{{ message.tags }} rounded-pill px-5 my-3">
+                        {{ message }}
+                       </div>
+                       </div>
+                      {% endfor %}
                   </div>
                   </div>
                 </div>
@@ -155,6 +157,7 @@
                     <input
                       class="input--style-5"
                       type="text"
+                      id = "useremail"
                       name="email"
                       placeholder="ex) abcd1234@naver.com"
                     />
@@ -171,6 +174,7 @@
                       class="input--style-5"
                       type="tel"
                       name="tel"
+                      id = "userphone"
                       placeholder="ex) 01012345678"
                     />
                     <label class="label--desc"></label>
@@ -434,7 +438,7 @@
               <br>
 
               <div>
-                <button class="btn btn--radius-2 btn--red" type="submit" value="signup" >
+                <button class="btn btn--radius-2 btn--red"  value="signup" >
                   등록
                 </button>
               </div>
