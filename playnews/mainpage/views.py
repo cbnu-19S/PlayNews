@@ -56,14 +56,15 @@ def login(request):
          )
         return render(request,'mainpage/loginpage.html')'''
 def signup(request):
-    UserInfo.objects.create(
-        userid=request.POST.get('userid'),
-        userpw=request.POST.get('userpw'),
-        username=request.POST.get('username'),
-        useremail=request.POST.get('useremail'),
-        # userAddress=request.POST.get('useraddress'),
-        userPhone=request.POST.get('userphone'),
-    )
+    if request.method == 'POST':
+        UserInfo.objects.create(
+            userid=request.POST.get('userid'),
+            userpw=request.POST.get('userpw'),
+            # username=request.POST.get('username'),
+            # useremail=request.POST.get('useremail'),
+            # userAddress=request.POST.get('useraddress'),
+            # userPhone=request.POST.get('userphone'),
+        )
     return render(request, 'mainpage/loginpage.html')
 
 # userid 와 userpw 가 db에 저장된것과 같은지 비교한후 일치하면 result.html로 간다.
