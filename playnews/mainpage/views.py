@@ -32,6 +32,16 @@ def login(request):
          if info.userid == id and info.userpw == pw:
               return render(request, 'mainpage/loggedinpage.html')
     return render(request,'mainpage/loginpage.html')
+def check(request):
+    id = request.POST.get('userid')
+    infos = UserInfo.objects.all()
+    for info in infos:
+        if info.userid == id:
+            return HttpResponse("id가 중복되었습니다.")
+
+    return HttpResponse("사용가능한 id 입니다.")
+
+
 
 '''def signup(request):
     if 'checkid' in request.POST:
