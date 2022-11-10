@@ -20,10 +20,8 @@
 <body>
 <div class="chat_header">
 
-    <a href="{% url 'go_mainpage' %}">main page</a>
-
     <span>FAQ 챗봇</span>
-    <button type="button" id="close_chat_btn" class="close_btn">X</button>
+    <button type="button" id="close_chat_btn" class="close_btn" onclick="location.href='{% url 'go_mainpage' %}'">X</button>
 </div>
 <div id="divbox" class="chat_content"></div>
 <form id="form" style="display: inline">
