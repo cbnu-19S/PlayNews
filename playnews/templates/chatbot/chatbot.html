@@ -1,63 +1,69 @@
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
-<script type="text/javascript" src="jquery-3.6.1.min.js"></script>
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<style>
-.chat_wrap {display:none;width: 350px;height: 500px;position: fixed;bottom: 30px;right: 95px;background: #a9bdce;}
-.chat_content {height: 600px;width: 500px;overflow-y:scroll;padding:10px 15px;background: cornflowerblue}
-.chat_input {padding:2px 5px;}
-.chat_header {padding: 10px 15px;border-bottom: 1px solid #95a6b4;}
-.chat_header .close_btn {border: none;background: none;float: right;}
-.send_btn {;border: 1px solid #666;background: #ffeb33;height: 28px;color: #0a0a0a;}
-.msg_box:after {content: '';display: block;clear:both;}
-.msg_box > span {padding: 3px 5px;word-break: break-all;display: block;max-width: 300px;margin-bottom: 10px;border-radius: 4px}
-.msg_box.send > span {background:#ffeb33;float: right;}
-.msg_box.receive > span {background:#fff;float: left;}
-</style>
-<body>
-<div class="chat_header">
 
-    <span>FAQ 챗봇</span>
-    <button type="button" id="close_chat_btn" class="close_btn" onclick="location.href='{% url 'go_mainpage' %}'">X</button>
-</div>
-<div id="divbox" class="chat_content"></div>
-<form id="form" style="display: inline">
-    <input type="text" name="input1" class="chat_input" id="input1" size="74" style="display: inline; width: 460px" />
-    <input type="button" value="전송" id="btn_submit" class="send_btn" style="display: inline;width: 40px"  />
-</form>
+    <head>
+      <meta charset="utf-8">
+      <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-<script>
-    $('#btn_submit').click(function () {
-        send();
-    });
-    $('#form').on('submit', function(e){
-       e.preventDefault();
-       send();
-    });
-    $('#close_chat_btn').on('click', function(){
-        $('#chat_wrap').hide().empty();
-    });
-    function send(){
-        $('#divbox').append('<div class="msg_box send"><span>'+$('#input1').val()+'<span></div>');
-        $("#divbox").scrollTop($("#divbox")[0].scrollHeight);
-        console.log("serial"+$('form').serialize())
-        $.ajax({
-            url:  'http://127.0.0.1:8000/chat_service/', //챗봇 api url
-            type: 'post',
-            dataType: 'json',
-            data: $('form').serialize(),
-            success: function(data) {
-                <!--$('#reponse').html(data.reponse);-->
-                $('#divbox').append('<div class="msg_box receive"><span>'+ data.response +'<span></div>');
-                $("#divbox").scrollTop($("#divbox")[0].scrollHeight);
-            }
-        });
-        $('#input1').val('');
-    }
-</script>
+      <title>Chatbot</title>
+      <meta content="" name="description">
+      <meta content="" name="keywords">
 
-</body>
+      <!-- Favicons -->
+      <link href="{% static 'assets/img/favicon.png'%}" rel="icon">
+
+      <!-- Template Main CSS File -->
+      <link href="{% static 'assets/css/chatbot/chatbot.css'%}" rel="stylesheet">
+
+      <!-- Font awesome icons -->
+      <script src="https://kit.fontawesome.com/693ecea0b5.js" crossorigin="anonymous"></script>
+
+      <!-- Template Main JS File -->
+      <script src="{% static 'assets/js/chatbot/chatbot.js'%}"></script>
+
+      <!-- Google fonts -->
+      <!-- Nanum Myeongjo -->
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&display=swap" rel="stylesheet">
+          
+      <!-- Black Han Sans -->
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+      <!-- Google fonts End -->
+    </head>
+
+    <body>
+    <div class="chat_window">
+        <div class="top_menu">
+            <div class="buttons">
+                <div class="button close"></div>
+                <div class="button minimize"></div>
+                <div class="button maximize"></div>
+            </div>
+            <div class="title">궁금해요!</div>
+        </div>
+        <ul class="messages"></ul>
+        <div class="bottom_wrapper clearfix">
+            <div class="message_input_wrapper">
+                <input class="message_input" placeholder="궁금한 건 무엇이든 물어보세요!" />
+            </div>
+            <div class="send_message">
+                <div class="icon"></div>
+                <div class="text">보내기</div>
+            </div>
+        </div>
+    </div>
+    <div class="message_template">
+        <li class="message">
+            <div class="avatar"></div>
+            <div class="text_wrapper">
+                <div class="text"></div>
+            </div>
+        </li>
+    </div>
+    </body>
+
 </html>
