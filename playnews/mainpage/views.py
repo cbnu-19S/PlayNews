@@ -7,6 +7,7 @@ from django.http import HttpResponse # 직접 응답을 만들어서 전달할 �
 from django.http import HttpResponseRedirect # 이미 만들어진 페이지로 이동
 from django.contrib.auth import authenticate
 
+
 def mainpage(request):
     # 해당 url이 오면 templates/mainpage/main.html을 보여주겠다.
     return render(request,'mainpage/mainpage.html')
