@@ -1,5 +1,5 @@
 from django.shortcuts import render # 기본 반환값 (템플릿 지정하는 함수)
-from .models import UserInfo # 내가 만든 모델
+from .models import UserInfo, NewsInfo # 내가 만든 모델
 from django.contrib import messages
 
 from django.views.generic import View #클래스 뷰의 상위 클래스 (상속받기)
@@ -57,7 +57,15 @@ def login(request):
             # userAddress=request.POST.get('useraddress'),
             userPhone=request.POST.get('userphone'),
          )
-        return render(request,'mainpage/loginpage.html')'''
+        return render(request,'mainpage/loginpage.html')
+'''
+
+def article(request):
+    # articles = article.objects.all()
+    return render(request, 'mainpage/article.html')
+ #   return render(request, 'mainpage/article.html', {'articles':articles})
+
+
 
 def check(request):
     id = request.POST.get('userid')
