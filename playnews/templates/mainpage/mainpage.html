@@ -125,139 +125,27 @@
           <div>
             <ul class="portfolio-flters">
               <li data-filter="*" class="filter-active">모두</li>
-              <li data-filter=".filter-1">비트코인</li>
-              <li data-filter=".filter-2">주식</li>
-              <li data-filter=".filter-3">부동산</li>
-              <li data-filter=".filter-4">환율</li>
+              <li data-filter=".filter-비트코인">비트코인</li>
+              <li data-filter=".filter-물가">물가</li>
+              <li data-filter=".filter-환율">환율</li>
+              <li data-filter=".filter-인플레이션">인플레이션</li>
             </ul><!-- End Portfolio Filters -->
           </div>
 
           <div class="row gy-4 portfolio-container">
-
-            <div class="col-xl-4 col-md-6 portfolio-item filter-1">
+            {% for newsinfo in newsinfos %}
+            <div class="col-xl-4 col-md-6 portfolio-item filter-{{newsinfo.keyword}}">
               <div class="portfolio-wrap">
-                <a href="{% static 'assets/img/portfolio/app-1.jpg'%}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{{newsinfo1.img_link}}" class="img-fluid" alt=""></a>
+                <a href="{{newsinfo.img_link}}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{{newsinfo.img_link}}" class="img-fluid" alt=""></a>
                 <div class="portfolio-info">
-                  <h4><a href="/article" title="More Details">{{newsinfo1.keyword}}</a></h4>
-                  <p>{{newsinfo1.title}}
+                  <h4>{{newsinfo.keyword}}</h4>
+                  <p>
+                    <a href="/article/{{ newsinfo.newsid }}" title="More Details">{{newsinfo.title}}</a>
                   </p>
                 </div>
               </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-xl-4 col-md-6 portfolio-item filter-2">
-              <div class="portfolio-wrap">
-                <a href="{% static 'assets/img/portfolio/product-1.jpg'%}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{% static 'assets/img/portfolio/product-1.jpg'%}" class="img-fluid" alt=""></a>
-                <div class="portfolio-info">
-                  <h4><a href="portfolio-details.html" title="More Details">물가</a></h4>
-                  <p>美 10월 소비자물가 7.7% 상승…"예상보다 낮았다"
-</p>
-                </div>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-xl-4 col-md-6 portfolio-item filter-3">
-              <div class="portfolio-wrap">
-                <a href="{% static 'assets/img/portfolio/branding-1.jpg'%}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{% static 'assets/img/portfolio/branding-1.jpg'%}" class="img-fluid" alt=""></a>
-                <div class="portfolio-info">
-                  <h4><a href="portfolio-details.html" title="More Details">부동산</a></h4>
-                  <p>규제지역 싹 다 푼 이유 있었네…서울 아파트값 역대 최대 하락
-                  </p>
-                </div>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-xl-4 col-md-6 portfolio-item filter-4">
-              <div class="portfolio-wrap">
-                <a href="{% static 'assets/img/portfolio/books-1.jpg'%}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{% static 'assets/img/portfolio/books-1.jpg'%}" class="img-fluid" alt=""></a>
-                <div class="portfolio-info">
-                  <h4><a href="portfolio-details.html" title="More Details">환율</a></h4>
-                  <p>채권시장 위기 “이제 시작”...내년 외화채권 100억弗 만기 도래
-                  </p>
-                </div>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-xl-4 col-md-6 portfolio-item filter-1">
-              <div class="portfolio-wrap">
-                <a href="{% static 'assets/img/portfolio/app-2.jpg'%}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{{newsinfo1.img_link}}" class="img-fluid" alt=""></a>
-                <div class="portfolio-info">
-                  <h4><a href="portfolio-details.html" title="More Details">{{newsinfo2.keyword}}</a></h4>
-                  <p>{{newsinfo2.title}}</p>
-                </div>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-xl-4 col-md-6 portfolio-item filter-2">
-              <div class="portfolio-wrap">
-                <a href="{% static 'assets/img/portfolio/product-2.jpg'%}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{% static 'assets/img/portfolio/product-2.jpg'%}" class="img-fluid" alt=""></a>
-                <div class="portfolio-info">
-                  <h4><a href="portfolio-details.html" title="More Details">물가</a></h4>
-                  <p>생산자물가 22개월만에 '마이너스' …디플레 경고음 커지는 中
-                  </p>
-                </div>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-xl-4 col-md-6 portfolio-item filter-3">
-              <div class="portfolio-wrap">
-                <a href="{% static 'assets/img/portfolio/branding-2.jpg'%}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{% static 'assets/img/portfolio/branding-2.jpg'%}" class="img-fluid" alt=""></a>
-                <div class="portfolio-info">
-                  <h4><a href="portfolio-details.html" title="More Details">부동산</a></h4>
-                  <p>은마아파트 무개념 이태원 참사 현수막…강남구청 경고장 날렸다</p>
-                </div>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-xl-4 col-md-6 portfolio-item filter-4">
-              <div class="portfolio-wrap">
-                <a href="{% static 'assets/img/portfolio/books-2.jpg'%}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{% static 'assets/img/portfolio/books-2.jpg'%}" class="img-fluid" alt=""></a>
-                <div class="portfolio-info">
-                  <h4><a href="portfolio-details.html" title="More Details">환율</a></h4>
-                  <p>“美 선거 공화당 우세”…원·달러 환율 두달만에 1360원대로 하락</p>
-                </div>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-xl-4 col-md-6 portfolio-item filter-1">
-              <div class="portfolio-wrap">
-                <a href="{% static 'assets/img/portfolio/app-3.jpg'%}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{{newsinfo3.img_link}}" class="img-fluid" alt=""></a>
-                <div class="portfolio-info">
-                  <h4><a href="portfolio-details.html" title="More Details">비트코인</a></h4>
-                  {{newsinfo3.title}}
-                </div>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-xl-4 col-md-6 portfolio-item filter-2">
-              <div class="portfolio-wrap">
-                <a href="{% static 'assets/img/portfolio/product-3.jpg'%}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{% static 'assets/img/portfolio/product-3.jpg'%}" class="img-fluid" alt=""></a>
-                <div class="portfolio-info">
-                  <h4><a href="portfolio-details.html" title="More Details">물가</a></h4>
-                  <p>10월 물가 5.7% 올라 다시 상승폭 확대…공공요금 역대 최대 폭 상승</p>
-                </div>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-xl-4 col-md-6 portfolio-item filter-3">
-              <div class="portfolio-wrap">
-                <a href="{% static 'assets/img/portfolio/branding-3.jpg'%}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{% static 'assets/img/portfolio/branding-3.jpg'%}" class="img-fluid" alt=""></a>
-                <div class="portfolio-info">
-                  <h4><a href="portfolio-details.html" title="More Details">부동산</a></h4>
-                  <p>부동산 규제 해제에도 부산 아파트 매매가 큰 폭 하락 </p>
-                </div>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-xl-4 col-md-6 portfolio-item filter-4">
-              <div class="portfolio-wrap">
-                <a href="{% static 'assets/img/portfolio/books-3.jpg'%}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{% static 'assets/img/portfolio/books-3.jpg'%}" class="img-fluid" alt=""></a>
-                <div class="portfolio-info">
-                  <h4><a href="portfolio-details.html" title="More Details">환율</a></h4>
-                  <p>추경호 “외환 충분, 무리한 환율 방어 안 해… 부동산 PF 긴장하며 봐야”</p>
-                </div>
-              </div>
-            </div><!-- End Portfolio Item -->
+            </div>
+            {% endfor %}
 
           </div><!-- End Portfolio Container -->
 

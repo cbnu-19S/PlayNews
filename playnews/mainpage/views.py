@@ -8,12 +8,20 @@ from django.http import HttpResponseRedirect # 이미 만들어진 페이지로 
 from django.contrib.auth import authenticate
 
 
-def mainpage(request):
+
+'''def mainpage(request):
     newsinfo1=Newsinfo.objects.get(newsid=1)
     newsinfo2 = Newsinfo.objects.get(newsid=2)
     newsinfo3 = Newsinfo.objects.get(newsid=3)
     # 해당 url이 오면 templates/mainpage/main.html을 보여주겠다.
-    return render(request,'mainpage/mainpage.html',{'newsinfo1':newsinfo1,'newsinfo2':newsinfo2,'newsinfo3':newsinfo3,})
+    return render(request,'mainpage/mainpage.html',{'newsinfo1':newsinfo1,'newsinfo2':newsinfo2,'newsinfo3':newsinfo3,})'''
+def mainpage(request):
+    newsinfos=Newsinfo.objects.all()
+    # 해당 url이 오면 templates/mainpage/main.html을 보여주겠다.
+    return render(request,'mainpage/mainpage.html',{'newsinfos':newsinfos})
+def article(request,id):
+    article=Newsinfo.objects.get(newsid=id)
+    return render(request, 'mainpage/article.html',{'article':article})
 
 def loginpage(request):
     return render(request,'mainpage/loginpage.html')
@@ -63,10 +71,7 @@ def login(request):
         return render(request,'mainpage/loginpage.html')
 '''
 
-def article(request):
-    # articles = article.objects.all()
-    return render(request, 'mainpage/article.html')
- #   return render(request, 'mainpage/article.html', {'articles':articles})
+
 
 
 
