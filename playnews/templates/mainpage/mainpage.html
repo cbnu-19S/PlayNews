@@ -221,27 +221,27 @@
           <div>
             <ul class="portfolio-flters">
               <li data-filter="*" class="filter-active">모두</li>
-              <li data-filter=".filter-app">인플레이션</li>
-              <li data-filter=".filter-product">물가</li>
-              <li data-filter=".filter-branding">부동산</li>
-              <li data-filter=".filter-books">환율</li>
+              <li data-filter=".filter-1">비트코인</li>
+              <li data-filter=".filter-2">주식</li>
+              <li data-filter=".filter-3">부동산</li>
+              <li data-filter=".filter-4">환율</li>
             </ul><!-- End Portfolio Filters -->
           </div>
 
           <div class="row gy-4 portfolio-container">
 
-            <div class="col-xl-4 col-md-6 portfolio-item filter-app">
+            <div class="col-xl-4 col-md-6 portfolio-item filter-1">
               <div class="portfolio-wrap">
-                <a href="{% static 'assets/img/portfolio/app-1.jpg'%}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{% static 'assets/img/portfolio/app-1.jpg'%}" class="img-fluid" alt=""></a>
+                <a href="{% static 'assets/img/portfolio/app-1.jpg'%}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{{newsinfo1.img_link}}" class="img-fluid" alt=""></a>
                 <div class="portfolio-info">
-                  <h4><a href="/article" title="More Details">인플레이션</a></h4>
-                  <p>댈러스 연은 총재 "인플레 7.7%로 완화돼 안도… 갈 길 멀다“
+                  <h4><a href="/article" title="More Details">비트코인</a></h4>
+                  <p>{{newsinfo1.title}}
                   </p>
                 </div>
               </div>
             </div><!-- End Portfolio Item -->
 
-            <div class="col-xl-4 col-md-6 portfolio-item filter-product">
+            <div class="col-xl-4 col-md-6 portfolio-item filter-2">
               <div class="portfolio-wrap">
                 <a href="{% static 'assets/img/portfolio/product-1.jpg'%}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{% static 'assets/img/portfolio/product-1.jpg'%}" class="img-fluid" alt=""></a>
                 <div class="portfolio-info">
@@ -252,7 +252,7 @@
               </div>
             </div><!-- End Portfolio Item -->
 
-            <div class="col-xl-4 col-md-6 portfolio-item filter-branding">
+            <div class="col-xl-4 col-md-6 portfolio-item filter-3">
               <div class="portfolio-wrap">
                 <a href="{% static 'assets/img/portfolio/branding-1.jpg'%}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{% static 'assets/img/portfolio/branding-1.jpg'%}" class="img-fluid" alt=""></a>
                 <div class="portfolio-info">
@@ -263,7 +263,7 @@
               </div>
             </div><!-- End Portfolio Item -->
 
-            <div class="col-xl-4 col-md-6 portfolio-item filter-books">
+            <div class="col-xl-4 col-md-6 portfolio-item filter-4">
               <div class="portfolio-wrap">
                 <a href="{% static 'assets/img/portfolio/books-1.jpg'%}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{% static 'assets/img/portfolio/books-1.jpg'%}" class="img-fluid" alt=""></a>
                 <div class="portfolio-info">
@@ -274,17 +274,17 @@
               </div>
             </div><!-- End Portfolio Item -->
 
-            <div class="col-xl-4 col-md-6 portfolio-item filter-app">
+            <div class="col-xl-4 col-md-6 portfolio-item filter-1">
               <div class="portfolio-wrap">
                 <a href="{% static 'assets/img/portfolio/app-2.jpg'%}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{% static 'assets/img/portfolio/app-2.jpg'%}" class="img-fluid" alt=""></a>
                 <div class="portfolio-info">
                   <h4><a href="portfolio-details.html" title="More Details">인플레이션</a></h4>
-                  <p>뉴욕연은 총재 "美 장기 기대인플레이션, 잘 고정돼 있어"</p>
+                  <p>{{newsinfo2.title}}</p>
                 </div>
               </div>
             </div><!-- End Portfolio Item -->
 
-            <div class="col-xl-4 col-md-6 portfolio-item filter-product">
+            <div class="col-xl-4 col-md-6 portfolio-item filter-2">
               <div class="portfolio-wrap">
                 <a href="{% static 'assets/img/portfolio/product-2.jpg'%}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{% static 'assets/img/portfolio/product-2.jpg'%}" class="img-fluid" alt=""></a>
                 <div class="portfolio-info">
@@ -295,7 +295,7 @@
               </div>
             </div><!-- End Portfolio Item -->
 
-            <div class="col-xl-4 col-md-6 portfolio-item filter-branding">
+            <div class="col-xl-4 col-md-6 portfolio-item filter-3">
               <div class="portfolio-wrap">
                 <a href="{% static 'assets/img/portfolio/branding-2.jpg'%}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{% static 'assets/img/portfolio/branding-2.jpg'%}" class="img-fluid" alt=""></a>
                 <div class="portfolio-info">
@@ -305,7 +305,7 @@
               </div>
             </div><!-- End Portfolio Item -->
 
-            <div class="col-xl-4 col-md-6 portfolio-item filter-books">
+            <div class="col-xl-4 col-md-6 portfolio-item filter-4">
               <div class="portfolio-wrap">
                 <a href="{% static 'assets/img/portfolio/books-2.jpg'%}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{% static 'assets/img/portfolio/books-2.jpg'%}" class="img-fluid" alt=""></a>
                 <div class="portfolio-info">
@@ -315,17 +315,17 @@
               </div>
             </div><!-- End Portfolio Item -->
 
-            <div class="col-xl-4 col-md-6 portfolio-item filter-app">
+            <div class="col-xl-4 col-md-6 portfolio-item filter-1">
               <div class="portfolio-wrap">
-                <a href="{% static 'assets/img/portfolio/app-3.jpg'%}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{% static 'assets/img/portfolio/app-3.jpg'%}" class="img-fluid" alt=""></a>
+                <a href="{% static 'assets/img/portfolio/app-3.jpg'%}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{{newsinfo3.img_link}}" class="img-fluid" alt=""></a>
                 <div class="portfolio-info">
-                  <h4><a href="portfolio-details.html" title="More Details">인플레이션</a></h4>
-                  <p>“이번 인플레 70년대 유가파동때와 달라… 장기화될 듯”</p>
+                  <h4><a href="portfolio-details.html" title="More Details">비트코인</a></h4>
+                  {{newsinfo3.title}}
                 </div>
               </div>
             </div><!-- End Portfolio Item -->
 
-            <div class="col-xl-4 col-md-6 portfolio-item filter-product">
+            <div class="col-xl-4 col-md-6 portfolio-item filter-2">
               <div class="portfolio-wrap">
                 <a href="{% static 'assets/img/portfolio/product-3.jpg'%}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{% static 'assets/img/portfolio/product-3.jpg'%}" class="img-fluid" alt=""></a>
                 <div class="portfolio-info">
@@ -335,7 +335,7 @@
               </div>
             </div><!-- End Portfolio Item -->
 
-            <div class="col-xl-4 col-md-6 portfolio-item filter-branding">
+            <div class="col-xl-4 col-md-6 portfolio-item filter-3">
               <div class="portfolio-wrap">
                 <a href="{% static 'assets/img/portfolio/branding-3.jpg'%}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{% static 'assets/img/portfolio/branding-3.jpg'%}" class="img-fluid" alt=""></a>
                 <div class="portfolio-info">
@@ -345,7 +345,7 @@
               </div>
             </div><!-- End Portfolio Item -->
 
-            <div class="col-xl-4 col-md-6 portfolio-item filter-books">
+            <div class="col-xl-4 col-md-6 portfolio-item filter-4">
               <div class="portfolio-wrap">
                 <a href="{% static 'assets/img/portfolio/books-3.jpg'%}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{% static 'assets/img/portfolio/books-3.jpg'%}" class="img-fluid" alt=""></a>
                 <div class="portfolio-info">

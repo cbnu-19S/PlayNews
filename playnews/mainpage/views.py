@@ -1,5 +1,5 @@
 from django.shortcuts import render # 기본 반환값 (템플릿 지정하는 함수)
-from .models import UserInfo, NewsInfo # 내가 만든 모델
+from .models import Userinfo, Newsinfo # 내가 만든 모델
 from django.contrib import messages
 
 from django.views.generic import View #클래스 뷰의 상위 클래스 (상속받기)
@@ -9,8 +9,11 @@ from django.contrib.auth import authenticate
 
 
 def mainpage(request):
+    newsinfo1=Newsinfo.objects.get(newsid=1)
+    newsinfo2 = Newsinfo.objects.get(newsid=2)
+    newsinfo3 = Newsinfo.objects.get(newsid=3)
     # 해당 url이 오면 templates/mainpage/main.html을 보여주겠다.
-    return render(request,'mainpage/mainpage.html')
+    return render(request,'mainpage/mainpage.html',{'newsinfo1':newsinfo1,'newsinfo2':newsinfo2,'newsinfo3':newsinfo3,})
 
 def loginpage(request):
     return render(request,'mainpage/loginpage.html')
@@ -28,7 +31,7 @@ def signuppage(request):
 def login(request):
     id = request.POST.get('userid')
     pw = request.POST.get('userpw')
-    infos = UserInfo.objects.all()
+    infos = Userinfo.objects.all()
     for info in infos:
          if info.userid == id and info.userpw == pw:
               return render(request, 'mainpage/loggedinpage.html')
@@ -69,7 +72,7 @@ def article(request):
 
 def check(request):
     id = request.POST.get('userid')
-    infos = UserInfo.objects.all()
+    infos = Userinfo.objects.all()
     for info in infos:
         if info.userid == id:
             return HttpResponse("id가 중복되었습니다.")
@@ -78,7 +81,7 @@ def check(request):
 
 def signup(request):
     if request.method == 'POST':
-        UserInfo.objects.create(
+        Userinfo.objects.create(
             userid=request.POST.get('userid'),
             userpw=request.POST.get('userpw'),
             username=request.POST.get('username'),
