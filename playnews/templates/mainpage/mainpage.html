@@ -85,7 +85,7 @@
       </a>
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="#hero">홈</a></li>
+          <li><a href="{% url 'go_mainpage' %}">홈</a></li>
           <li><a href="#keyword">키워드</a></li>
           <li><a href="#news">오늘의 뉴스</a></li>
           <li><a href="#analyze">언론사별 기사 분석</a></li>
@@ -234,7 +234,7 @@
               <div class="portfolio-wrap">
                 <a href="{% static 'assets/img/portfolio/app-1.jpg'%}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{% static 'assets/img/portfolio/app-1.jpg'%}" class="img-fluid" alt=""></a>
                 <div class="portfolio-info">
-                  <h4><a href="portfolio-details.html" title="More Details">인플레이션</a></h4>
+                  <h4><a href="/article" title="More Details">인플레이션</a></h4>
                   <p>댈러스 연은 총재 "인플레 7.7%로 완화돼 안도… 갈 길 멀다“
                   </p>
                 </div>
