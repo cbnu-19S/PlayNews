@@ -85,7 +85,7 @@ def getNaverSearch(type, srcText, start, display):
 def getPostData(post, jsonResult, cnt):
     link = post['link'] #네이버 뉴스 URL
     title = post['title'] # 기사 제목
-    jsonResult.append({'cnt':cnt, 'title':title, 'link':link})
+    jsonResult.append({'cnt':cnt, 'link':link})
     return
 
 
@@ -94,7 +94,6 @@ def getPostData(post, jsonResult, cnt):
 def getNewsData(post, DataResult,inputkeyword):
     # 기존 정보 넣기
     cnt = post['cnt']
-    title = post['title']
     link = post['link']
     keyword = inputkeyword
 
@@ -102,6 +101,11 @@ def getNewsData(post, DataResult,inputkeyword):
     response = get(post['link'], headers={'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36'})
     soup = BeautifulSoup(response.text, "html.parser")
 
+    # 제목
+    title = soup.select('#title_area > span')
+    print(title)
+    title = title[0].text
+    print(title)
     # 기사 작성 날짜 [Date]
     date_first = soup.find('span', class_='media_end_head_info_datestamp_time _ARTICLE_DATE_TIME')
     date_mod = soup.find('span', class_='media_end_head_info_datestamp_time _ARTICLE_MODIFY_DATE_TIME _ARTICLE_DATE_TIME')

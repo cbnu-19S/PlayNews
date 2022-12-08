@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
 {% block title %}Article{% endblock %}
 
-
 {% block content %}
 <h1>{{article.title}}</h1>
 <p><center><img src="{{article.img_link}}"></center></p>
-<p>{{article.context}}</p>
-<p>{{article.writer}}</p>
+<p class="art">{{article.context}}</p>
+<p class="art">{{article.writer}}</p>
 {% endblock %}
