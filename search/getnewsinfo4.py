@@ -108,7 +108,8 @@ def getNewsData(post, DataResult,inputkeyword):
 
     # 신문사 [newspaper]
     newspaper = soup.find('img', class_='media_end_head_top_logo_img light_type', alt = True)
-    newspaper = newspaper['alt']
+    if newspaper is not None:
+        newspaper = newspaper['alt']
 
     # 기자 이름 [writer]
     writer = soup.find('em', class_="media_end_head_journalist_name")
