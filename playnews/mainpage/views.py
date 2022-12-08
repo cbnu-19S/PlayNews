@@ -15,13 +15,18 @@ from django.contrib.auth import authenticate
 def mainpage(request):
     newsinfos=Newsinfo.objects.all()
 
+    news_keyword_list = []
     news_firm_list = []
     for newsinfo in newsinfos:
         if newsinfo.newspaper not in news_firm_list:
             news_firm_list.append(newsinfo.newspaper)
 
+    for newsinfo in newsinfos:
+        if newsinfo.keyword not in news_keyword_list:
+            news_keyword_list.append(newsinfo.keyword)
+
     # 해당 url이 오면 templates/mainpage/main.html을 보여주겠다.
-    return render(request,'mainpage/mainpage.html',{'newsinfos':newsinfos,'news_firm_list':news_firm_list})
+    return render(request,'mainpage/mainpage.html',{'newsinfos':newsinfos,'news_firm_list':news_firm_list,'news_keyword_list':news_keyword_list})
 
 def news_firm(requset,firm):
     newsinfos_firm = Newsinfo.objects.filter(newspaper=firm)
