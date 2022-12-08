@@ -14,7 +14,8 @@ urlpatterns = [
     path('signuppage/', views.signuppage, name='go_signuppage'),
     path('signup/', views.signup, name='signup'),
     path('check/', views.check, name='check'),
-    path('article/<int:id>', views.article, name='article')
+    path('article/<int:id>', views.article, name='article'),
+    path('news_firm/<str:firm>', views.news_firm, name='news_firm')
 
     ]
 
