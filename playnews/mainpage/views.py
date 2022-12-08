@@ -61,10 +61,10 @@ def login(request):
 
 
 
-'''def signup(request):
+def signup2(request):
     if 'checkid' in request.POST:
         id = request.POST.get('userid')
-        infos = UserInfo.objects.all()
+        infos = Userinfo.objects.all()
         is_exist = False
         for info in infos:
             if info.userid == id:
@@ -74,7 +74,7 @@ def login(request):
                 messages.add_message(request, messages.SUCCESS, '사용 가능한 id 입니다.')
         return render(request,'mainpage/signuppage.html')
     elif 'signup' in request.POST:
-        UserInfo.objects.create(
+        Userinfo.objects.create(
             userid=request.POST.get('userid'),
             userpw=request.POST.get('userpw'),
             username=request.POST.get('username'),
@@ -83,7 +83,7 @@ def login(request):
             userPhone=request.POST.get('userphone'),
          )
         return render(request,'mainpage/loginpage.html')
-'''
+
 
 
 
@@ -106,7 +106,7 @@ def signup(request):
             username=request.POST.get('username'),
             useremail=request.POST.get('useremail'),
             # userAddress=request.POST.get('userAddress'),
-            userPhone=request.POST.get('userPhone'),
+            userphone=request.POST.get('userPhone'),
         )
     return render(request, 'mainpage/loginpage.html')
 

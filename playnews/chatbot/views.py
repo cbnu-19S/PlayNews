@@ -4,7 +4,6 @@ import json
 
 
 def chatbot(request):
-    # 이거는 폴더 이름인듯 챗봇 폴더안의 html파일을 요청함
     return render(request,'chatbot/chatbot.html')
 
 def chat_service(request):
