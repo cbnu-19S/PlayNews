@@ -117,7 +117,6 @@ def getNewsData(post, DataResult,inputkeyword):
 
     # 수정
     body = soup.find_all('div', class_="go_trans _article_content")
-    print(body)
     # 알고리즘
     # 본문 for문을 돌면서 img 태그는 이미지에 따로 저장, 텍스트는 텍스트 리스트에 따로 저장
     # 이미지가 나오기 전까지 문장들을 붙여서 저장하다가 이미지가 나오면 바로 리스트에 저장, 그리고 다음 텍스트들은 다음 인덱스에 넣는다.
@@ -129,22 +128,15 @@ def getNewsData(post, DataResult,inputkeyword):
 
 
     for i in body:
-        print(f"{i.find('img')} {(i.find('img')).text} {type(i.find('img')).text})")
-        if (i.find('img') == -1) or(i.find('img') == None):
-            content += i.text
-        else:
-            if i.find('img') is not None:
-                img = i.find('img')
-                img_link=img['data-src']
-                alt = i.find('em', class_ = 'img_desc')
-                if alt != None:
-                    img_alt = alt.text
-                i.find('img').decompose()
-                context= i.text
-                content = ''
+        img = i.find('img')
+        img_link=img['data-src']
+        alt = i.find('em', class_ = 'img_desc')
+        if alt != None:
+            img_alt = alt.text
+        i.find('img').decompose()
+        context= i.text
+        content = ''
                 
-            else:
-                continue
                 
 
     if date_mod is not None and writer is not None:
@@ -185,7 +177,6 @@ def main():
     cursor.executemany(insert_sql, DataResult)
     # cursor.execute(update_keyword_sql, keyword)
     db.commit()
-    print(DataResult)
 
 if __name__ == '__main__':
     main()
