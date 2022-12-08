@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{%load static%}
+{% block title %}news_firm{% endblock %}
+
+
+{% block content %}
+<section id="news" class="portfolio sections-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-header">
+          <h2>언론사 별 뉴스</h2>
+          <p>🧐</p>
+          <p>{{newsinfos_firm.newspaper}}가 주목한 뉴스는?</p>
+        </div>
+
+        <div class="portfolio-isotope" data-portfolio-filter="*" data-portfolio-layout="masonry" data-portfolio-sort="original-order" data-aos="fade-up" data-aos-delay="100">
+
+          <div>
+            <ul class="portfolio-flters">
+              <li data-filter="*" class="filter-active">모두</li>
+              <li data-filter=".filter-비트코인">비트코인</li>
+              <li data-filter=".filter-물가">물가</li>
+              <li data-filter=".filter-환율">환율</li>
+              <li data-filter=".filter-인플레이션">인플레이션</li>
+            </ul><!-- End Portfolio Filters -->
+          </div>
+
+          <div class="row gy-4 portfolio-container">
+            {% for newsinfo in newsinfos_firm %}
+            <div class="col-xl-4 col-md-6 portfolio-item filter-{{newsinfo.keyword}}">
+              <div class="portfolio-wrap">
+                <a href="{{newsinfo.img_link}}" data-gallery="portfolio-gallery-app" class="glightbox"><img src="{{newsinfo.img_link}}" class="img-fluid" alt=""></a>
+                <div class="portfolio-info">
+                  <h4>{{newsinfo.keyword}}</h4>
+                  <p>
+                    <a href="/article/{{ newsinfo.newsid }}" title="More Details">{{newsinfo.title}}</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+
+          </div><!-- End Portfolio Container -->
+
+        </div>
+
+      </div>
+    </section><!-- End Portfolio Section -->
+
+{% endblock %}

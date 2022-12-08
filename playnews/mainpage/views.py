@@ -9,16 +9,25 @@ from django.contrib.auth import authenticate
 
 
 
-'''def mainpage(request):
-    newsinfo1=Newsinfo.objects.get(newsid=1)
-    newsinfo2 = Newsinfo.objects.get(newsid=2)
-    newsinfo3 = Newsinfo.objects.get(newsid=3)
-    # 해당 url이 오면 templates/mainpage/main.html을 보여주겠다.
-    return render(request,'mainpage/mainpage.html',{'newsinfo1':newsinfo1,'newsinfo2':newsinfo2,'newsinfo3':newsinfo3,})'''
+
+
+
 def mainpage(request):
     newsinfos=Newsinfo.objects.all()
+
+    news_firm_list = []
+    for newsinfo in newsinfos:
+        if newsinfo.newspaper not in news_firm_list:
+            news_firm_list.append(newsinfo.newspaper)
+
     # 해당 url이 오면 templates/mainpage/main.html을 보여주겠다.
-    return render(request,'mainpage/mainpage.html',{'newsinfos':newsinfos})
+    return render(request,'mainpage/mainpage.html',{'newsinfos':newsinfos,'news_firm_list':news_firm_list})
+
+def news_firm(requset,firm):
+    newsinfos_firm = Newsinfo.objects.filter(newspaper=firm)
+    return render(requset,'mainpage/news_firm.html', {'newsinfos_firm':newsinfos_firm})
+
+
 def article(request,id):
     article=Newsinfo.objects.get(newsid=id)
     return render(request, 'mainpage/article.html',{'article':article})
