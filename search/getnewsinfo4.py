@@ -12,12 +12,12 @@
 
 # --------------------------------------------------------------------------
 # URL(대부분 HTTP)을 여는 데 도움이 되는 함수와 클래스를 정의한 라이브러리
+
 import urllib.request
 import json
 import datetime
 from bs4 import BeautifulSoup, Comment
 from requests import get
-import pickle
 
 # 네이버 클라이언트 ID/비밀키
 client_id = 'IOUzsco6f11Y2fdiKzsh'
@@ -116,8 +116,8 @@ def getNewsData(post, DataResult,inputkeyword):
         writer = soup.find('span', class_="byline_s")
 
     # 수정
-    body = soup.find('div', class_="go_trans _article_content")
-
+    body = soup.find_all('div', class_="go_trans _article_content")
+    print(body)
     # 알고리즘
     # 본문 for문을 돌면서 img 태그는 이미지에 따로 저장, 텍스트는 텍스트 리스트에 따로 저장
     # 이미지가 나오기 전까지 문장들을 붙여서 저장하다가 이미지가 나오면 바로 리스트에 저장, 그리고 다음 텍스트들은 다음 인덱스에 넣는다.
@@ -127,19 +127,25 @@ def getNewsData(post, DataResult,inputkeyword):
     img_alt = '' # 이미지 설명
     content = ''
 
+
     for i in body:
-        if (i.find('img') == -1) or(i.find('img') == None) and (i.find('em') == -1) or(i.find('em') == None):
+        print(f"{i.find('img')} {(i.find('img')).text} {type(i.find('img')).text})")
+        if (i.find('img') == -1) or(i.find('img') == None):
             content += i.text
         else:
             if i.find('img') is not None:
                 img = i.find('img')
                 img_link=img['data-src']
                 alt = i.find('em', class_ = 'img_desc')
-                img_alt=alt.text
-                context=content
+                if alt != None:
+                    img_alt = alt.text
+                i.find('img').decompose()
+                context= i.text
                 content = ''
+                
             else:
                 continue
+                
 
     if date_mod is not None and writer is not None:
         DataResult.append({'cnt':cnt, 'title' : title, 'link' : link , 'date_first' : date_first.string, 'date_mod' : date_mod.string, 'newspaper':newspaper, 'writer':writer.string, 'context':context, 'img_link':img_link, 'img_alt':img_alt, 'keyword':keyword})
