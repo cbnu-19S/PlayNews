@@ -161,22 +161,26 @@
         <div class="section-header">
           <h2>언론사별 기사 분석</h2>
           <p>🤔</p>
-          <p>각 언론사는 같은 주제인 '부동산'에 대해서 어떻게 기술했을까?</p>
+          <p>각 언론사는 같은 주제에 대해서 어떻게 기술했을까?</p>
         </div>
+
 
         <div class="row gy-4">
 
+          {% for news_firm in news_firm_list %}
           <div class="col-xl-4 col-md-6">
             <article>
 
+              <!--
               <div class="post-img">
                 <img src="{% static 'assets/img/blog/blog-1.jpg'%}" alt="" class="img-fluid">
               </div>
+              -->
 
-              <p class="post-category">이데일리</p>
+              <p class="post-category">{{news_firm}}</p>
 
               <h2 class="title">
-                <a href="blog-details.html">이데일리 경향 분석</a>
+                <a href="/news_firm/{{news_firm}}">{{news_firm}} 경향 분석</a>
               </h2>
 
               <div class="d-flex align-items-center">
@@ -191,6 +195,7 @@
             </article>
           </div><!-- End post list item -->
 
+          <!--
           <div class="col-xl-4 col-md-6">
             <article>
 
@@ -214,8 +219,10 @@
               </div>
 
             </article>
-          </div><!-- End post list item -->
+          </div>
+          -->
 
+          <!--
           <div class="col-xl-4 col-md-6">
             <article>
 
@@ -239,8 +246,10 @@
               </div>
 
             </article>
-          </div><!-- End post list item -->
 
+          </div>
+          -->
+          {% endfor %}
         </div><!-- End recent posts list -->
 
       </div>
