@@ -129,11 +129,13 @@ def getNewsData(post, DataResult,inputkeyword):
 
     for i in body:
         img = i.find('img')
-        img_link=img['data-src']
+        if img != None:
+            img_link=img['data-src']
         alt = i.find('em', class_ = 'img_desc')
         if alt != None:
             img_alt = alt.text
-        i.find('img').decompose()
+        if img != None:
+            i.find('img').decompose()
         context= i.text
         content = ''
                 
