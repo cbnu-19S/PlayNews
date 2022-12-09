@@ -1,9 +1,18 @@
 {% extends 'base.html' %}
 {% block title %}Article{% endblock %}
 
-
 {% block content %}
-<h1>{{article.title}}</h1>
-<p><center><img src="{{article.img_link}}"></center></p>
-<p>{{article.context}}</p>
+<center>
+    <h1>{{article.title}}</h1>
+</center>
+<center>
+    <p><img src="{{article.img_link}}"></p>
+    <div style="width:70%;">
+        <p class="art">{{article.context}}</p>
+        <p class="art" align="right">{{article.writer}}<br>{{article.date_first}}</p>
+
+    </div>
+</center>
+
+
 {% endblock %}

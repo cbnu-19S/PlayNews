@@ -125,10 +125,9 @@
           <div>
             <ul class="portfolio-flters">
               <li data-filter="*" class="filter-active">모두</li>
-              <li data-filter=".filter-비트코인">비트코인</li>
-              <li data-filter=".filter-물가">물가</li>
-              <li data-filter=".filter-환율">환율</li>
-              <li data-filter=".filter-인플레이션">인플레이션</li>
+              {% for news_keyword in news_keyword_list %}
+              <li data-filter=".filter-{{news_keyword}}">{{news_keyword}}</li>
+              {% endfor %}
             </ul><!-- End Portfolio Filters -->
           </div>
 
@@ -159,26 +158,32 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-header">
-          <h2>언론사별 기사 분석</h2>
+          <h2>언론사별 기사 보기</h2>
           <p>🤔</p>
-          <p>각 언론사는 같은 주제인 '부동산'에 대해서 어떻게 기술했을까?</p>
+          <p>각 언론사는 같은 키워드에 대한 뉴스를 얼마나 발행했을까?</p>
+          <div>👇</div>
+          <div>아래에서 확인해 보세요</div>
         </div>
+
 
         <div class="row gy-4">
 
+          {% for news_firm in news_firm_list %}
           <div class="col-xl-4 col-md-6">
             <article>
 
+              <!--
               <div class="post-img">
                 <img src="{% static 'assets/img/blog/blog-1.jpg'%}" alt="" class="img-fluid">
               </div>
+              -->
 
-              <p class="post-category">이데일리</p>
 
               <h2 class="title">
-                <a href="blog-details.html">이데일리 경향 분석</a>
+                <a href="/news_firm/{{news_firm}}">{{news_firm}}</a>
               </h2>
 
+              <!--
               <div class="d-flex align-items-center">
                 <div class="post-meta">
                   <p class="post-author">양희진</p>
@@ -187,10 +192,12 @@
                   </p>
                 </div>
               </div>
+              -->
 
             </article>
           </div><!-- End post list item -->
 
+          <!--
           <div class="col-xl-4 col-md-6">
             <article>
 
@@ -214,8 +221,10 @@
               </div>
 
             </article>
-          </div><!-- End post list item -->
+          </div>
+          -->
 
+          <!--
           <div class="col-xl-4 col-md-6">
             <article>
 
@@ -239,8 +248,10 @@
               </div>
 
             </article>
-          </div><!-- End post list item -->
 
+          </div>
+          -->
+          {% endfor %}
         </div><!-- End recent posts list -->
 
       </div>

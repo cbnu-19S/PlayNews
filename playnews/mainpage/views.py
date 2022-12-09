@@ -9,16 +9,30 @@ from django.contrib.auth import authenticate
 
 
 
-'''def mainpage(request):
-    newsinfo1=Newsinfo.objects.get(newsid=1)
-    newsinfo2 = Newsinfo.objects.get(newsid=2)
-    newsinfo3 = Newsinfo.objects.get(newsid=3)
-    # 해당 url이 오면 templates/mainpage/main.html을 보여주겠다.
-    return render(request,'mainpage/mainpage.html',{'newsinfo1':newsinfo1,'newsinfo2':newsinfo2,'newsinfo3':newsinfo3,})'''
+
+
+
 def mainpage(request):
     newsinfos=Newsinfo.objects.all()
+
+    news_keyword_list = []
+    news_firm_list = []
+    for newsinfo in newsinfos:
+        if newsinfo.newspaper not in news_firm_list:
+            news_firm_list.append(newsinfo.newspaper)
+
+    for newsinfo in newsinfos:
+        if newsinfo.keyword not in news_keyword_list:
+            news_keyword_list.append(newsinfo.keyword)
+
     # 해당 url이 오면 templates/mainpage/main.html을 보여주겠다.
-    return render(request,'mainpage/mainpage.html',{'newsinfos':newsinfos})
+    return render(request,'mainpage/mainpage.html',{'newsinfos':newsinfos,'news_firm_list':news_firm_list,'news_keyword_list':news_keyword_list})
+
+def news_firm(requset,firm):
+    newsinfos_firm = Newsinfo.objects.filter(newspaper=firm)
+    return render(requset,'mainpage/news_firm.html', {'newsinfos_firm':newsinfos_firm})
+
+
 def article(request,id):
     article=Newsinfo.objects.get(newsid=id)
     return render(request, 'mainpage/article.html',{'article':article})
@@ -46,10 +60,10 @@ def login(request):
 
 
 
-'''def signup(request):
+def signup2(request):
     if 'checkid' in request.POST:
         id = request.POST.get('userid')
-        infos = UserInfo.objects.all()
+        infos = Userinfo.objects.all()
         is_exist = False
         for info in infos:
             if info.userid == id:
@@ -59,7 +73,7 @@ def login(request):
                 messages.add_message(request, messages.SUCCESS, '사용 가능한 id 입니다.')
         return render(request,'mainpage/signuppage.html')
     elif 'signup' in request.POST:
-        UserInfo.objects.create(
+        Userinfo.objects.create(
             userid=request.POST.get('userid'),
             userpw=request.POST.get('userpw'),
             username=request.POST.get('username'),
@@ -68,7 +82,7 @@ def login(request):
             userPhone=request.POST.get('userphone'),
          )
         return render(request,'mainpage/loginpage.html')
-'''
+
 
 
 
@@ -91,7 +105,7 @@ def signup(request):
             username=request.POST.get('username'),
             useremail=request.POST.get('useremail'),
             # userAddress=request.POST.get('userAddress'),
-            userPhone=request.POST.get('userPhone'),
+            userphone=request.POST.get('userPhone'),
         )
     return render(request, 'mainpage/loginpage.html')
 

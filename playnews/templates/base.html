@@ -37,6 +37,7 @@
   <link href="{% static 'assets/vendor/aos/aos.css'%}" rel="stylesheet">
   <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css'%}" rel="stylesheet">
   <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css'%}" rel="stylesheet">
+  <link href="{% static 'assets/css/article.css'%}" rel="stylesheet">
 
   <!-- Template Main CSS File -->
   <link href="{% static 'assets/css/main.css'%}" rel="stylesheet">
@@ -87,8 +88,13 @@
           <li><a href="{% url 'go_mainpage' %}">홈</a></li>
           <li><a href="#keyword">키워드</a></li>
           <li><a href="#news">오늘의 뉴스</a></li>
+<<<<<<< HEAD
           <li><a href="#analyze">언론사별 기사 분석</a></li>
           <li><a href="#">궁금한 게 있으신가요?</a></li>
+=======
+          <li><a href="#analyze">언론사별 기사</a></li>
+          <li><a href="{% url 'go_chatbot' %}">궁금한 게 있으신가요?</a></li>
+>>>>>>> 328ad18a309859c4b149d8f464a9f354da97c85c
         </ul>
       </nav><!-- .navbar -->
 

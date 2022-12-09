@@ -12,12 +12,12 @@
 
 # --------------------------------------------------------------------------
 # URL(대부분 HTTP)을 여는 데 도움이 되는 함수와 클래스를 정의한 라이브러리
+
 import urllib.request
 import json
 import datetime
 from bs4 import BeautifulSoup, Comment
 from requests import get
-import pickle
 
 # 네이버 클라이언트 ID/비밀키
 client_id = 'IOUzsco6f11Y2fdiKzsh'
@@ -85,7 +85,7 @@ def getNaverSearch(type, srcText, start, display):
 def getPostData(post, jsonResult, cnt):
     link = post['link'] #네이버 뉴스 URL
     title = post['title'] # 기사 제목
-    jsonResult.append({'cnt':cnt, 'title':title, 'link':link})
+    jsonResult.append({'cnt':cnt, 'link':link})
     return
 
 
@@ -94,7 +94,6 @@ def getPostData(post, jsonResult, cnt):
 def getNewsData(post, DataResult,inputkeyword):
     # 기존 정보 넣기
     cnt = post['cnt']
-    title = post['title']
     link = post['link']
     keyword = inputkeyword
 
@@ -102,13 +101,19 @@ def getNewsData(post, DataResult,inputkeyword):
     response = get(post['link'], headers={'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36'})
     soup = BeautifulSoup(response.text, "html.parser")
 
+    # 제목
+    title = soup.select('#title_area > span')
+    print(title)
+    title = title[0].text
+    print(title)
     # 기사 작성 날짜 [Date]
     date_first = soup.find('span', class_='media_end_head_info_datestamp_time _ARTICLE_DATE_TIME')
     date_mod = soup.find('span', class_='media_end_head_info_datestamp_time _ARTICLE_MODIFY_DATE_TIME _ARTICLE_DATE_TIME')
 
     # 신문사 [newspaper]
     newspaper = soup.find('img', class_='media_end_head_top_logo_img light_type', alt = True)
-    newspaper = newspaper['alt']
+    if newspaper is not None:
+        newspaper = newspaper['alt']
 
     # 기자 이름 [writer]
     writer = soup.find('em', class_="media_end_head_journalist_name")
@@ -116,8 +121,7 @@ def getNewsData(post, DataResult,inputkeyword):
         writer = soup.find('span', class_="byline_s")
 
     # 수정
-    body = soup.find('div', class_="go_trans _article_content")
-
+    body = soup.find_all('div', class_="go_trans _article_content")
     # 알고리즘
     # 본문 for문을 돌면서 img 태그는 이미지에 따로 저장, 텍스트는 텍스트 리스트에 따로 저장
     # 이미지가 나오기 전까지 문장들을 붙여서 저장하다가 이미지가 나오면 바로 리스트에 저장, 그리고 다음 텍스트들은 다음 인덱스에 넣는다.
@@ -127,19 +131,20 @@ def getNewsData(post, DataResult,inputkeyword):
     img_alt = '' # 이미지 설명
     content = ''
 
+
     for i in body:
-        if (i.find('img') == -1) or(i.find('img') == None) and (i.find('em') == -1) or(i.find('em') == None):
-            content += i.text
-        else:
-            if i.find('img') is not None:
-                img = i.find('img')
-                img_link=img['data-src']
-                alt = i.find('em', class_ = 'img_desc')
-                img_alt=alt.text
-                context=content
-                content = ''
-            else:
-                continue
+        img = i.find('img')
+        if img != None:
+            img_link=img['data-src']
+        alt = i.find('em', class_ = 'img_desc')
+        if alt != None:
+            img_alt = alt.text
+        if img != None:
+            i.find('img').decompose()
+        context= i.text
+        content = ''
+                
+                
 
     if date_mod is not None and writer is not None:
         DataResult.append({'cnt':cnt, 'title' : title, 'link' : link , 'date_first' : date_first.string, 'date_mod' : date_mod.string, 'newspaper':newspaper, 'writer':writer.string, 'context':context, 'img_link':img_link, 'img_alt':img_alt, 'keyword':keyword})
@@ -179,7 +184,6 @@ def main():
     cursor.executemany(insert_sql, DataResult)
     # cursor.execute(update_keyword_sql, keyword)
     db.commit()
-    print(DataResult)
 
 if __name__ == '__main__':
     main()

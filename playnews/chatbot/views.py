@@ -150,7 +150,12 @@ def chatanswer(request):
     anstext = chat3(questext)
     print(anstext)
 
+<<<<<<< HEAD
     context['anstext'] = anstext
     context['flag'] = '0'
+=======
+def chatbot(request):
+    return render(request,'chatbot/chatbot.html')
+>>>>>>> 328ad18a309859c4b149d8f464a9f354da97c85c
 
     return JsonResponse(context, content_type="application/json")
