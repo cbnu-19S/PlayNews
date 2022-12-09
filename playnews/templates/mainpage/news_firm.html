@@ -18,10 +18,9 @@
           <div>
             <ul class="portfolio-flters">
               <li data-filter="*" class="filter-active">모두</li>
-              <li data-filter=".filter-비트코인">비트코인</li>
-              <li data-filter=".filter-물가">물가</li>
-              <li data-filter=".filter-환율">환율</li>
-              <li data-filter=".filter-인플레이션">인플레이션</li>
+              {% for news_keyword in news_keyword_list %}
+              <li data-filter=".filter-{{news_keyword}}">{{news_keyword}}</li>
+              {% endfor %}
             </ul><!-- End Portfolio Filters -->
           </div>
 

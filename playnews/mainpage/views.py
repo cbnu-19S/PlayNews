@@ -30,7 +30,14 @@ def mainpage(request):
 
 def news_firm(requset,firm):
     newsinfos_firm = Newsinfo.objects.filter(newspaper=firm)
-    return render(requset,'mainpage/news_firm.html', {'newsinfos_firm':newsinfos_firm})
+    newsinfos = Newsinfo.objects.all()
+    news_keyword_list = []
+
+    for newsinfo in newsinfos:
+        if newsinfo.keyword not in news_keyword_list:
+            news_keyword_list.append(newsinfo.keyword)
+
+    return render(requset,'mainpage/news_firm.html', {'newsinfos_firm':newsinfos_firm, 'news_keyword_list':news_keyword_list})
 
 
 def article(request,id):
