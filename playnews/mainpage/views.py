@@ -35,7 +35,6 @@ def signuppage(request):
 
 
 
-
 def login(request):
     id = request.POST.get('userid')
     pw = request.POST.get('userpw')
